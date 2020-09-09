@@ -25,8 +25,8 @@ public class CustomerController
     @GetMapping(value = "/orders", produces = "application/json")
     public ResponseEntity<?> listAllCustomersOrders()
     {
-        List<Customer> myList = customerServices.findAllCustomersOrders();
-        return new ResponseEntity<>(myList, HttpStatus.OK);
+        List<Customer> allCustomers = customerServices.findAllCustomersOrders();
+        return new ResponseEntity<>(allCustomers, HttpStatus.OK);
     }
 
     // http://localhost:2019/customers/customer/7
@@ -37,5 +37,11 @@ public class CustomerController
         return new ResponseEntity<>(customerById, HttpStatus.OK);
     }
 
-    
+    // http://localhost:2019/customers/namelike/mes
+    @GetMapping(value = "/namelike/{custname}", produces = "application/json")
+    public ResponseEntity<?> findCustomerNameLike(@PathVariable String custname)
+    {
+        List<Customer> customerNameLike = customerServices.findByNameLike(custname);
+        return new ResponseEntity<>(customerNameLike, HttpStatus.OK);
+    }
 }

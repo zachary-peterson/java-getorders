@@ -10,4 +10,6 @@ public interface CustomerServices
     List<Customer> findAllCustomersOrders();
 
     Customer findCustomerById(long custid);
+
+    List<Customer> findByNameLike(String custname);
 }
